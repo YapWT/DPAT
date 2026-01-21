@@ -1,12 +1,18 @@
 package com.example.discount;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.io.IOException;
+
 public class Main {
+    private static String FilePath = "src/main/java/com/example/discount/";
+
     public static void main(String[] args) {
         testSimpleImplementation();
-        testStrategyPattern();
-        testDecoratorPattern();
         testChainOfResponsibility();
+        testStrategyPattern();
         testFactoryPattern();
+        testDecoratorPattern();
     }
 
     /**
@@ -24,7 +30,9 @@ public class Main {
         double result = calc.calculateFinalPrice(100.0, "SUMMER", false, false);
 
         System.out.println("Base $100 + SUMMER (No VIP, No Holiday) = Expected: 90.0, Result: " + result);
-        System.out.println("Observation: High coupling. Testing one branch requires managing all parameters.\n");
+        System.out.println("Observation: High coupling. Testing one branch requires managing all parameters.");
+
+        calculateCyclomaticComplexity("DiscountCalculator");
     }
 
     /**
@@ -40,7 +48,9 @@ public class Main {
         double result = summer.apply(100.0);
 
         System.out.println("Isolated Summer Strategy (10%) = Expected: 90.0, Result: " + result);
-        System.out.println("Observation: High Isolation. CC is 1. Zero dependence on other discount types.\n");
+        System.out.println("Observation: High Isolation. CC is 1. Zero dependence on other discount types.");
+
+        calculateCyclomaticComplexity("StrategyPattern");
     }
 
     /**
@@ -59,7 +69,9 @@ public class Main {
         // We can test multi-stacking without modifying the original class
         PriceComponent vipTaxed = new VipMemberDecorator(taxed); // Subtracts $20
         System.out.println("Base $100 + Tax + VIP = Expected: 85.0, Result: " + vipTaxed.getPrice());
-        System.out.println("Observation: Granular testing. Each decorator's logic is verified separately.\n");
+        System.out.println("Observation: Granular testing. Each decorator's logic is verified separately.");
+
+        calculateCyclomaticComplexity("Decorator");
     }
 
     /**
@@ -78,7 +90,9 @@ public class Main {
         double result = bfHandler.process(100.0, "WELCOME");
 
         System.out.println("Chain processing 'WELCOME' code = Expected: 90.0, Result: " + result);
-        System.out.println("Observation: We can test delegation logic independently of the calculation.\n");
+        System.out.println("Observation: We can test delegation logic independently of the calculation.");
+
+        calculateCyclomaticComplexity("DiscountHandler");
     }
 
     /**
@@ -95,30 +109,50 @@ public class Main {
         boolean isCorrectType = strategy instanceof PercentageDiscount;
 
         System.out.println("Factory returned PercentageDiscount for 'WINTER': " + isCorrectType);
-        System.out.println("Observation: Simplified assertions. We only need to verify the instance type.\n");
+        System.out.println("Observation: Simplified assertions. We only need to verify the instance type.");
+
+        calculateCyclomaticComplexity("DiscountFactory");
+    }
+
+    private static void calculateCyclomaticComplexity(String filename) {
+        try {
+            String source = Files.readString(Path.of(FilePath + filename + ".java"));
+            long cc = source.lines()
+                    .filter(line -> line.matches(".*\\b(if|else if|for|while|case|catch)\\b.*"))
+                    .count() + 1; // +1 for default path
+
+            System.out.println("Cyclomatic Complexity: " + cc + "\n");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
 // Output:
-// --- Testing Simple Implementation ---
+// -- Testing Simple Implementation ---
 // Base $100 + SUMMER (No VIP, No Holiday) = Expected: 90.0, Result: 90.0
-// Observation: High coupling. Testing one branch requires managing all
-// parameters.
+// Observation: High coupling. Testing one branch requires managing all parameters.
+// Cyclomatic Complexity: 5
+//
+// --- Testing Chain of Responsibility ---
+// Chain processing 'WELCOME' code = Expected: 90.0, Result: 90.0
+// Observation: We can test delegation logic independently of the calculation.
+// Cyclomatic Complexity: 3
 //
 // --- Testing Strategy Pattern ---
 // Isolated Summer Strategy (10%) = Expected: 90.0, Result: 90.0
-// Observation: High Isolation. CC is 1. Zero dependence on other discount
-// types.
+// Observation: High Isolation. CC is 1. Zero dependence on other discount types.
+// Cyclomatic Complexity: 1
+//
+// --- Testing Factory Pattern ---
+// Factory returned PercentageDiscount for 'WINTER': true
+// Observation: Simplified assertions. We only need to verify the instance type.
+// Cyclomatic Complexity: 4
 //
 // --- Testing Decorator Pattern ---
 // Base $100 + Tax Decorator = Expected: 105.0, Result: 105.0
 // Base $100 + Tax + VIP = Expected: 85.0, Result: 85.0
 // Observation: Granular testing. Each decorator's logic is verified separately.
+// Cyclomatic Complexity: 1
 //
-// --- Testing Chain of Responsibility ---
-// Chain processing 'WELCOME' code = Expected: 90.0, Result: 90.0
-// Observation: We can test delegation logic independently of the calculation.
-//
-// --- Testing Factory Pattern ---
-// Factory returned PercentageDiscount for 'WINTER': true
-// Observation: Simplified assertions. We only need to verify the instance type.
