@@ -25,23 +25,42 @@ The evaluation uses **McCabe’s Cyclomatic Complexity** $(V(G) = P + 1)$ to pro
 ---
 
 ## 🖼️ UML Class Diagrams
+*Click on a section below to expand and view the diagram.*
 
-Below are the visual representations of each architectural solution.
+<details>
+  <summary>🗂️ <b>View: Simple Implementation (Baseline S1)</b></summary>
+  <p align="center">
+    <img src="images/Simple_Solution.drawio.svg" alt="Simple Solution Diagram">
+  </p>
+</details>
 
-### 1. Simple Implementation
-![Simple Implementation Diagram](images/Simple_Solution.drawio.svg)
+<details>
+  <summary>🗂️ <b>View: Strategy Pattern</b></summary>
+  <p align="center">
+    <img src="images/Strategy_Pattern.drawio.svg" alt="Strategy Pattern Diagram">
+  </p>
+</details>
 
-### 2. Strategy Pattern
-![Strategy Pattern Diagram](images/Strategy_Pattern.drawio.svg)
+<details>
+  <summary>🗂️ <b>View: Decorator Pattern</b></summary>
+  <p align="center">
+    <img src="images/Decorator_Pattern.drawio.svg" alt="Decorator Pattern Diagram">
+  </p>
+</details>
 
-### 3. Decorator Pattern
-![Decorator Pattern Diagram](images/Decorator_Pattern.drawio.svg)
+<details>
+  <summary>🗂️ <b>View: Factory Method Pattern</b></summary>
+  <p align="center">
+    <img src="images/Factory_Pattern.drawio.svg" alt="Factory Pattern Diagram">
+  </p>
+</details>
 
-### 4. Factory Method Pattern
-![Factory Pattern Diagram](images/Factory_Pattern.drawio.svg)
-
-### 5. Chain of Responsibility Pattern
-![Chain of Responsibility Diagram](images/Chain_Responsibility.drawio.svg)
+<details>
+  <summary>🗂️ <b>View: Chain of Responsibility Pattern</b></summary>
+  <p align="center">
+    <img src="images/Chain_Responsibility.drawio.svg" alt="Chain of Responsibility Diagram">
+  </p>
+</details>
 
 > **Full Diagram Link:** [View on Draw.io] (https://drive.google.com/file/d/1DN9UTTTo1ApRJnfbzv0alv8R2ODLiS9o/view?usp=sharing)
 
