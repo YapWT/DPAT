@@ -24,10 +24,26 @@ The evaluation uses **McCabe’s Cyclomatic Complexity** $(V(G) = P + 1)$ to pro
 
 ---
 
-## 📊 UML Diagram
-The architectural relationship between these patterns and the baseline solution is documented in the following diagram:
+## 🖼️ UML Class Diagrams
 
-**[View UML Diagram (Draw.io)](https://drive.google.com/file/d/1DN9UTTTo1ApRJnfbzv0alv8R2ODLiS9o/view?usp=sharing)** 
+Below are the visual representations of each architectural solution.
+
+### 1. Simple Implementation
+![Simple Implementation Diagram](images/Simple_Solution.drawio.svg)
+
+### 2. Strategy Pattern
+![Strategy Pattern Diagram](images/Strategy_Pattern.drawio.svg)
+
+### 3. Decorator Pattern
+![Decorator Pattern Diagram](images/Decorator_Pattern.drawio.svg)
+
+### 4. Factory Method Pattern
+![Factory Pattern Diagram](images/Factory_Pattern.drawio.svg)
+
+### 5. Chain of Responsibility Pattern
+![Chain of Responsibility Diagram](images/Chain_Responsibility.drawio.svg)
+
+> **Full Diagram Link:** [View on Draw.io] (https://drive.google.com/file/d/1DN9UTTTo1ApRJnfbzv0alv8R2ODLiS9o/view?usp=sharing)
 
 ---
 
