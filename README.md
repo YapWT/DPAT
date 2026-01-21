@@ -18,7 +18,7 @@ The following files represent the two different design solutions (Simple & Patte
 | **`Main.java`** | **Evaluation Runner** | Provides a simulation of unit tests to prove behavioral isolation. |
 
 ## 🛠 Empirical Evaluation (Testability)
-The evaluation uses **McCabe’s Cyclomatic Complexity** `(V(G) = P + 1)` to prove that:
+The evaluation uses **McCabe’s Cyclomatic Complexity** $(V(G) = P + 1)$ to prove that:
 1. Simple creates a single unit with a complexity of 5, requiring combinatorial test cases.
 2. Pattern-based breaks logic into smaller units with minimum complexities of 1, allowing for targeted unit testing and behavioral isolation.
 
